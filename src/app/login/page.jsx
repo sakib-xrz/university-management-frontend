@@ -1,16 +1,47 @@
 "use client";
-import { Button, Col, Input, Row } from "antd";
+
+import { Button, Col, Row } from "antd";
 import loginImage from "../../assets/login-image.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import { SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
+import APIKit from "@/common/APIKit";
+import { setJWTokenAndRedirect } from "@/components/shared/AuthGuardHOC";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
+  const searchParams = useSearchParams();
+  const previousURL = searchParams.get("next");
+  const router = useRouter();
+
   const onSubmit = (data) => {
-    try {
-      console.log(data);
-    } catch (err) {}
+    const handleSuccess = ({ data }) => {
+      setJWTokenAndRedirect(data?.accessToken, () => {
+        if (previousURL) {
+          router.push(previousURL);
+        } else {
+          router.push("/profile");
+        }
+      });
+    };
+
+    const handleFailure = (error) => {
+      console.log(error);
+      throw error;
+    };
+
+    const promise = APIKit.auth
+      .login(data)
+      .then(handleSuccess)
+      .catch(handleFailure);
+
+    return toast.promise(promise, {
+      loading: "Logging in...",
+      success: "Login successful!",
+      error: (error) =>
+        error?.response?.data?.message || "Something went wrong",
+    });
   };
   return (
     <Row
@@ -29,7 +60,7 @@ export default function LoginPage() {
             margin: "15px 0px",
           }}
         >
-          First login your account
+          Login to your account
         </h1>
         <div>
           <Form submitHandler={onSubmit}>

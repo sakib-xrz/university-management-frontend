@@ -2,6 +2,7 @@
 
 import { Layout } from "antd";
 import UMBreadCrumb from "./UMBreadCrumb";
+import Header from "./Header";
 
 const { Content } = Layout;
 
@@ -12,10 +13,10 @@ export default function Contents({ children }) {
       style={{
         minHeight: "100vh",
         color: "black",
-        margin: "16px",
       }}
     >
-      <div style={{ padding: "5px 0px" }}>
+      <Header />
+      <div style={{ margin: "16px" }}>
         <UMBreadCrumb
           items={[
             {
@@ -28,8 +29,8 @@ export default function Contents({ children }) {
             },
           ]}
         />
+        <div style={{ marginTop: "8px" }}>{children}</div>
       </div>
-      {children}
     </Content>
   );
 }

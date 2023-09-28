@@ -16,7 +16,7 @@ export default function FormInput({
   const { control } = useFormContext();
   return (
     <>
-      {label ? label : null}
+      <p>{label ? label : null}</p>
       <Controller
         control={control}
         name={name}
