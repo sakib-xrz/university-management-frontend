@@ -1,7 +1,8 @@
 export default function ProfilePage() {
   return (
-    <div>
+    <>
+      <title>University Management - Profile</title>
       <h1>This is Profile page</h1>
-    </div>
+    </>
   );
 }

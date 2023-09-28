@@ -5,12 +5,13 @@ import { Layout, Menu } from "antd";
 const { Sider } = Layout;
 
 import SidebarItems from "@/constants/SidebarItems";
-import { USER_ROLE } from "@/constants/role";
-
-const role = USER_ROLE.ADMIN;
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/reducers/userSlice";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const user = useSelector(selectUser);
+  const { role } = user;
   return (
     <Sider
       collapsible

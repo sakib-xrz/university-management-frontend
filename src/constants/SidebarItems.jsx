@@ -18,7 +18,7 @@ export default function SidebarItems(role) {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
+          label: <Link href={`/${role}`}>Account Profile</Link>,
           key: `/${role}/profile`,
         },
         {
@@ -129,17 +129,6 @@ export default function SidebarItems(role) {
       label: <Link href={`/${role}/user`}>Manage User</Link>,
       icon: <TableOutlined />,
       key: `/${role}/user`,
-    },
-    {
-      label: "Manage permission",
-      key: "manage-permission",
-      icon: <AppstoreOutlined />,
-      children: [
-        {
-          label: <Link href={`/${role}/permission`}>View permissions</Link>,
-          key: `/${role}/permission`,
-        },
-      ],
     },
     {
       label: "Management",
