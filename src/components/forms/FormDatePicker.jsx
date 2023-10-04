@@ -12,8 +12,9 @@ const FormDatePicker = ({ name, label, onChange, size = "large" }) => {
 
   return (
     <div>
-      {label ? label : null}
-      <br />
+      <p style={{ marginBottom: "5px", fontWeight: "500" }}>
+        {label ? label : null}
+      </p>
       <Controller
         name={name}
         control={control}

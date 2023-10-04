@@ -16,7 +16,9 @@ const FormSelectField = ({
 
   return (
     <>
-      {label ? label : null}
+      <p style={{ marginBottom: "5px", fontWeight: "500" }}>
+        {label ? label : null}
+      </p>
       <Controller
         control={control}
         name={name}

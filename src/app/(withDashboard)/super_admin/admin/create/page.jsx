@@ -264,7 +264,7 @@ export default function CreateAdmin() {
           </Row>
         </div>
         <Button htmlType="submit" type="primary">
-          Create
+          Create Admin
         </Button>
       </Form>
     </>
